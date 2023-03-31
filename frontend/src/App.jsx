@@ -7,7 +7,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { createTheme } from "@mui/material/styles";
-import axios from 'axios'
+import NotFoud from "./components/NotFoud";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -17,11 +17,11 @@ function App() {
     <div className="app">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-       
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={ isAuth ? <HomePage /> : <Navigate to='/' />} />
           <Route path="/profile/:userId" element={isAuth ? <ProfilePage /> : <Navigate to='/' />} />
+          <Route path="*" element={<NotFoud />} />
         </Routes>
       </ThemeProvider>
     </div>
