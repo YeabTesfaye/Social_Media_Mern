@@ -53,8 +53,8 @@ app.post('/auth/register', upload.single("picture"), register);
 app.post('/posts', verifyToken, upload.single("picture"), createPost)
 /*** ROUTES ****/
 app.use("/auth", authRoutes);
-app.use('/', userRoutes);
-app.use('/', postRotues)
+app.use('/users', userRoutes);
+app.use('/posts', postRotues)
 /*****SERVER SETUP **********/
 app.listen(PORT, () => {
   console.log(`the port is running at port ${PORT}`);
