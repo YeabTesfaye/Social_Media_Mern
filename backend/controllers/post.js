@@ -15,13 +15,11 @@ export const createPost = async (req, res) => {
       likes: {},
       comment: [],
     });
-    await newPost.save();
-
-    const post = await Post.find();
-    res.satus(201).json(post);
-  } catch (err) {
-    res.status(409).json({
-      message: err.message,
+    const savedPost = await newPost.save();
+    return res.satus(201).json(savedPost);
+  } catch (error) {
+    return res.status(409).json({
+      message: error.message,
     });
   }
 };
@@ -31,19 +29,19 @@ export const createPost = async (req, res) => {
 export const getFeedPosts = async (req, res) => {
   try {
     const post = await Post.find();
-    res.status(200).json(post);
-  } catch (err) {
-    res.status(404).json({ message: err.message });
+    return res.status(200).json(post);
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
   }
 };
 
 export const getUserPosts = async (req, res) => {
   try {
     const { userId } = req.params;
-    const post = await Post.findById({ userId });
-    res.satus(200).json(post);
-  } catch (err) {
-    res.status(404).json({ message: err.message });
+    const post = await Post.findById(userId);
+    return res.satus(200).json(post);
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
   }
 };
 
@@ -67,8 +65,8 @@ export const likePost = async (req, res) => {
       { new: true }
     );
 
-    res.status(200).json(updatedPost);
-  } catch (err) {
-    res.status(404).json({ message: err.message });
+    return res.status(200).json(updatedPost);
+  } catch (error) {
+    return res.status(404).json({ message: error.message });
   }
 };

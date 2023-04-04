@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-
-const postSchema = mongoose.Schema(
+const {Schema, model} = mongoose
+const postSchema = Schema(
   {
     userId: {
       type: String,
@@ -30,6 +30,5 @@ const postSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-const Post = mongoose.model("Post", postSchema);
+export default model("Post", postSchema);
 
-export default Post;
