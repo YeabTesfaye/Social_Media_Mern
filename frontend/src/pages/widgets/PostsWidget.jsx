@@ -9,17 +9,20 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:8080/posts", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await fetch(
+      "https://social-media-backend-zs56.onrender.com/posts",
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     const data = await response.json();
     dispatch(setPosts({ posts: data }));
   };
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `http://localhost:8080/posts/${userId}/posts`,
+      `https://social-media-backend-zs56.onrender.com/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
